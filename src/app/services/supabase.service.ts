@@ -45,16 +45,24 @@ export class SupabaseService {
 
     private supabase: SupabaseClient;
     private router = inject(Router);
+    public isConfigured = false;
 
     constructor() {
         const supabaseUrl = environment.supabaseUrl?.trim();
         const supabaseKey = environment.supabaseAnonKey?.trim();
 
-        if (!supabaseUrl || !supabaseKey) {
-            throw new Error('Falta configurar supabaseUrl o supabaseAnonKey en environment.ts y environment.prod.ts.');
-        }
+        const hasRealConfig = Boolean(
+            supabaseUrl && supabaseKey &&
+            !supabaseUrl.includes('YOUR_') &&
+            !supabaseKey.includes('YOUR_')
+        );
 
-        this.supabase = createClient(supabaseUrl, supabaseKey, {
+        this.isConfigured = hasRealConfig;
+
+        const urlToUse = hasRealConfig ? supabaseUrl : 'https://example.supabase.co';
+        const keyToUse = hasRealConfig ? supabaseKey : 'public-anon-key';
+
+        this.supabase = createClient(urlToUse, keyToUse, {
             auth: {
                 storage: CapacitorStorage,
                 autoRefreshToken: true,
@@ -72,6 +80,10 @@ export class SupabaseService {
 
     /** Obtiene la sesión actual de Supabase */
     public async getSession(): Promise<Session | null> {
+        if (!this.isConfigured) {
+            return null;
+        }
+
         try {
             const {data: {session}} = await this.supabase.auth.getSession();
             return session;
@@ -83,6 +95,10 @@ export class SupabaseService {
 
     /** LOGIN ONLINE */
     public async signIn(email: string, password: string): Promise<any> { // Puede devolver el user object o un simple flag
+        if (!this.isConfigured) {
+            return null;
+        }
+
         const {data, error} = await this.supabase.auth.signInWithPassword({email, password});
         if (error) throw error;
 

@@ -19,9 +19,6 @@ import {
     IonButton,
     IonButtons,
     IonToggle,
-    IonDatetimeButton,
-    IonModal,
-    IonDatetime,
 } from '@ionic/angular/standalone';
 
 import { Cliente } from '../../../models/database.types';
@@ -49,9 +46,6 @@ import { SupabaseService } from '../../../services/supabase.service';
         IonButton,
         IonButtons,
         IonToggle,
-        IonDatetimeButton,
-        IonModal,
-        IonDatetime,
     ],
 })
 export class PedidoModalComponent implements OnInit {

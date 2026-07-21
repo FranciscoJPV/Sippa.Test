@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import {
     ModalController, ToastController, AlertController,
     IonHeader, IonToolbar, IonTitle, IonContent, IonFooter,
-    IonList, IonListHeader, IonItem, IonLabel,
+    IonListHeader, IonItem, IonLabel,
     IonSelect, IonSelectOption, IonInput,
     IonButton, IonButtons, IonMenuButton,
     IonGrid, IonRow, IonCol,
@@ -47,7 +47,6 @@ interface SelectedIngredient {
         IonTitle,
         IonContent,
         IonFooter,
-        IonList,
         IonListHeader,
         IonItem,
         IonLabel,
