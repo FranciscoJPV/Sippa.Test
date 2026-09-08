@@ -1,48 +1,68 @@
+// ===== PALETA DE COLORES DEFINIDA =====
+$primary-teal: #6CBFB7;      // Teal principal - más vibrante
+$primary-pink: #EE8BA0;      // Pink principal - más saturado
+$secondary-teal: #A8D8D4;    // Teal secundario - más claro
+$tertiary-mint: #E8F6F5;     // Mint muy claro - fondos
+$accent-rose: #F5B4C7;       // Rose - acentos
+$text-dark: #4A8A84;         // Texto oscuro - mejor contraste
+$bg-light: #F8FBFA;          // Fondo claro
+$white: #FFFFFF;             // Blanco
+$border-color: #B8DDD9;      // Bordes
+$success: #2ECC71;           // Verde éxito
+$danger: #E74C3C;            // Rojo peligro
+$warning: #F39C12;           // Naranja alerta
+$info: #3498DB;              // Azul información
+
 #container {
   text-align: center;
   padding: 12px;
-  background: #F0F9F8; /* Fondo general */
+  background: $tertiary-mint;
   border-radius: 18px;
 }
 
 #container strong {
   font-size: 20px;
   line-height: 26px;
-  color: #81BFB7; /* Títulos/acento fuerte */
+  color: $text-dark;
 }
 
 #container p {
   font-size: 16px;
   line-height: 22px;
-  color: #81BFB7;
+  color: $text-dark;
   margin: 0;
 }
 
 #container a {
   text-decoration: none;
-  color: #F3A2BE;
+  color: $primary-pink;
   font-weight: 600;
+  transition: color 0.2s;
+
+  &:hover {
+    color: $primary-teal;
+  }
 }
 
 // Fondo de ion-content
 ion-content {
-  --background: #f5f5f5 !important;
+  --background: $bg-light !important;
 }
 
 // Estilos para la toolbar del calendario
 .calendar-nav {
-  --background: #F0F9F8 !important;
+  --background: $tertiary-mint !important;
 }
 
 // Estilos generales para ion-toolbar
 ion-toolbar {
-  --background: #F3A2BE !important;
-  --color: #fff !important;
+  --background: $primary-pink !important;
+  --color: $white !important;
 }
 
 // Título del toolbar
 ion-title {
-  color: #fff !important;
+  color: $white !important;
   font-weight: 700;
   text-transform: uppercase;
   font-size: 1.2rem;
@@ -50,27 +70,32 @@ ion-title {
 
 // Menu button
 ion-menu-button {
-  --color: #fff !important;
-  color: #fff !important;
+  --color: $white !important;
+  color: $white !important;
 }
 
 // Botón de nuevo pedido
 ion-button[slot="end"] {
-  --background: #fff !important;
-  --color: #F3A2BE !important;
-  background: #fff !important;
-  color: #F3A2BE !important;
+  --background: $white !important;
+  --color: $primary-pink !important;
+  background: $white !important;
+  color: $primary-pink !important;
   font-weight: 700;
   border-radius: 8px;
+  transition: all 0.2s;
+
+  &:hover {
+    box-shadow: 0 4px 12px rgba(238, 139, 160, 0.2);
+  }
 }
 
 .calendar {
   max-width: 720px;
   margin: 8px auto;
   text-align: center;
-  background: #FFD3DD; /* Fondo de calendario */
+  background: $accent-rose;
   border-radius: 16px;
-  box-shadow: 0 2px 8px rgba(243, 162, 190, 0.08);
+  box-shadow: 0 2px 8px rgba(238, 139, 160, 0.12);
   padding: 16px 0 24px 0;
 }
 .calendar .header {
@@ -78,83 +103,109 @@ ion-button[slot="end"] {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 8px;
-  background: #C6E6E3;
+  background: $secondary-teal;
   border-radius: 12px;
   padding: 8px 16px;
 }
 .calendar .label {
   font-weight: 600;
-  color: #F3A2BE;
-  font-size: 30px;  text-transform: capitalize;}
+  color: $primary-pink;
+  font-size: 30px;
+  text-transform: capitalize;
+}
 .weekdays {
   display: grid;
-  grid-template-columns: repeat(7,1fr);
+  grid-template-columns: repeat(7, 1fr);
   margin-bottom: 4px;
 }
 .weekdays div {
   font-size: 12px;
-  color: #81BFB7;
+  color: $text-dark;
   font-weight: 600;
 }
 .grid {
   display: grid;
-  grid-template-columns: repeat(7,1fr);
+  grid-template-columns: repeat(7, 1fr);
   gap: 4px;
 }
 .cell {
   min-height: 72px;
-  border: 1px solid #C6E6E3;
-  background: #F0F9F8;
+  border: 1px solid $border-color;
+  background: $tertiary-mint;
   position: relative;
   padding: 6px;
   cursor: pointer;
   border-radius: 10px;
-  transition: box-shadow 0.2s;
-}
-.cell:hover {
-  box-shadow: 0 2px 8px #F3A2BE33;
-  border-color: #F3A2BE;
+  transition: all 0.2s ease;
+
+  &:hover {
+    box-shadow: 0 2px 8px rgba(108, 191, 183, 0.15);
+    border-color: $primary-teal;
+  }
 }
 .cell.other {
-  background: #FFD3DD;
-  color: #C6E6E3;
+  background: $accent-rose;
+  color: $secondary-teal;
 }
 .cell .num {
   position: absolute;
   left: 6px;
   top: 6px;
   font-size: 14px;
-  color: #F3A2BE;
+  color: $primary-pink;
+  font-weight: 600;
 }
 .cell .badge {
   position: absolute;
   right: 6px;
   bottom: 6px;
-  background: #F3A2BE;
-  color: white;
+  background: $primary-pink;
+  color: $white;
   padding: 2px 8px;
   border-radius: 12px;
   font-size: 12px;
-  box-shadow: 0 1px 4px #F3A2BE33;
+  font-weight: 600;
+  box-shadow: 0 1px 4px rgba(238, 139, 160, 0.3);
+  transition: all 0.2s;
+
+  &:hover {
+    background: $primary-teal;
+  }
 }
 .actions {
   margin-top: 12px;
 }
+
 // Estilos para botones en la lista de pedidos
 ion-button[color="success"][fill="clear"] {
-  --color: #28a745 !important;
-  color: #28a745 !important;
+  --color: $success !important;
+  color: $success !important;
   font-weight: bold;
+  transition: all 0.2s;
+
+  &:hover {
+    opacity: 0.8;
+  }
 }
 
 ion-button[color="danger"][fill="clear"] {
-  --color: #dc3545 !important;
-  color: #dc3545 !important;
+  --color: $danger !important;
+  color: $danger !important;
   font-weight: bold;
+  transition: all 0.2s;
+
+  &:hover {
+    opacity: 0.8;
+  }
 }
 
 ion-button[fill="clear"] {
-  --color: #007bff !important;
-  color: #007bff !important;
+  --color: $info !important;
+  color: $info !important;
   font-weight: bold;
+  transition: all 0.2s;
+
+  &:hover {
+    opacity: 0.8;
+  }
 }
